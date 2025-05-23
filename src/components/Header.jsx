@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function Header() {
   return (
@@ -18,7 +19,7 @@ export default function Header() {
       <nav className="flex space-x-4 sm:space-x-8 text-base sm:text-lg font-medium">
         <a href="#services" className="hover:text-rose transition">Services</a>
         <a href="#booking" className="hover:text-rose transition">Réservation</a>
-        <a href="#contact" className="hover:text-rose transition">Contact</a>
+        <Link to="/contact" className="hover:text-rose transition">Contact</Link>
       </nav>
     </header>
   );
