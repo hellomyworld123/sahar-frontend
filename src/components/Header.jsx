@@ -7,7 +7,7 @@ export default function Header() {
         <img
           src="/images/logo.png"
           alt="Sahar Nail Care Logo"
-          className="h-10 sm:h-12 md:h-16 w-auto object-contain"
+          className="h-16 sm:h-20 md:h-24 w-auto object-contain"
           style={{
             background: "transparent",
             borderRadius: "0.5rem",
