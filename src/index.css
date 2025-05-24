@@ -21,3 +21,11 @@ a {
 a:hover {
   color: #D79E9E;
 }
+
+html, body {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}

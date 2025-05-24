@@ -12,7 +12,13 @@ export default function Home() {
       {/* Hero mobile‑first */}
       <div className="relative h-[70vh] md:h-[90vh] overflow-hidden">
         <img src="/images/hero-mobile.jpg" loading="lazy" alt="Hero" className="block md:hidden absolute inset-0 w-full h-full object-cover" />
-        <video className="hidden md:block absolute inset-0 w-full h-full object-cover" autoPlay loop muted playsInline>
+        <video
+          className="hidden md:block absolute inset-0 w-full h-full object-cover"
+          autoPlay
+          loop
+          muted
+          playsInline
+        >
           <source src="/videos/hero.mp4" type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-noir/60 flex flex-col items-center justify-center text-center px-4">
