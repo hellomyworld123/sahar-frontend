@@ -1,0 +1,14 @@
+{
+  "rewrites": [
+    { "source": "/images/(.*)", "destination": "/images/$1" },
+    { "source": "/videos/(.*)", "destination": "/videos/$1" },
+    { "source": "/static/(.*)", "destination": "/static/$1" },
+    { "source": "/favicon.ico", "destination": "/favicon.ico" },
+    { "source": "/manifest.json", "destination": "/manifest.json" },
+    { "source": "/logo192.png", "destination": "/logo192.png" },
+    { "source": "/logo512.png", "destination": "/logo512.png" },
+    { "source": "/robots.txt", "destination": "/robots.txt" },
+    { "source": "/sitemap.xml", "destination": "/sitemap.xml" },
+    { "source": "/(.*)", "destination": "/" }
+  ]
+} 
