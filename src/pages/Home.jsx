@@ -10,22 +10,9 @@ export default function Home() {
       <Header />
 
       {/* Hero mobile‑first */}
-      <div className="relative w-full h-[70vh] md:h-[90vh] overflow-hidden">
-        <img
-          src="/images/hero-mobile.jpg"
-          loading="lazy"
-          alt="Hero"
-          className="block md:hidden absolute inset-0 left-0 top-0 w-full h-full object-cover"
-          style={{ objectFit: 'cover', width: '100%', height: '100%', position: 'absolute', left: 0, top: 0 }}
-        />
-        <video
-          className="hidden md:block absolute inset-0 left-0 top-0 w-full h-full object-cover"
-          autoPlay
-          loop
-          muted
-          playsInline
-          style={{ objectFit: 'cover', width: '100%', height: '100%', position: 'absolute', left: 0, top: 0 }}
-        >
+      <div className="relative h-[70vh] md:h-[90vh] overflow-hidden">
+        <img src="/images/hero-mobile.jpg" loading="lazy" alt="Hero" className="block md:hidden absolute inset-0 w-full h-full object-cover" />
+        <video className="hidden md:block absolute inset-0 w-full h-full object-cover" autoPlay loop muted playsInline>
           <source src="/videos/hero.mp4" type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-noir/60 flex flex-col items-center justify-center text-center px-4">
