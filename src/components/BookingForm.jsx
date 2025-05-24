@@ -32,15 +32,12 @@ export default function BookingForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsLoading(true);
     try {
       await postReservation(data);
       setSubmitted(true);
     } catch (err) {
       console.error(err);
-      alert("Erreur API : " + err.message);
-    } finally {
-      setIsLoading(false);
+      alert('Erreur API : ' + err.message);
     }
   };
 

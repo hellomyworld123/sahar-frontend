@@ -1,25 +1,17 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import logo from '../assets/logo.png';
 
 export default function Header() {
   return (
-    <header className="bg-noir text-gold py-4 px-2 sm:py-6 sm:px-4 flex justify-between items-center shadow-lg">
-      <div className="flex items-center space-x-3">
-        <img
-          src="/images/logo.png"
-          alt="Sahar Nail Care Logo"
-          className="h-16 sm:h-20 md:h-24 w-auto object-contain"
-          style={{
-            background: "transparent",
-            borderRadius: "0.5rem",
-            boxShadow: "0 2px 8px rgba(0,0,0,0.15)"
-          }}
-        />
-      </div>
-      <nav className="flex space-x-4 sm:space-x-8 text-base sm:text-lg font-medium">
+    <header className="bg-noir text-gold py-4 px-4 flex justify-between items-center shadow-lg">
+      <a href="/" className="flex items-center space-x-2">
+        <img src={logo} alt="Sahâr logo" className="h-10 w-10 object-contain" />
+        <span className="sr-only">Sahâr Nail Care</span>
+      </a>
+      <nav className="flex space-x-6 text-base md:text-lg font-medium">
         <a href="#services" className="hover:text-rose transition">Services</a>
         <a href="#booking" className="hover:text-rose transition">Réservation</a>
-        <Link to="/contact" className="hover:text-rose transition">Contact</Link>
+        <a href="#contact" className="hover:text-rose transition">Contact</a>
       </nav>
     </header>
   );
