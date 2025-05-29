@@ -34,4 +34,6 @@ echo "🔗 Récupération de l'URL de déploiement..."
 DEPLOY_URL=$(vercel ls --token=$VERCEL_TOKEN | grep admin-preview | awk '{print $2}')
 
 echo "✅ Configuration terminée !"
-echo "🌐 URL de déploiement : $DEPLOY_URL" 
+echo "🌐 URL de déploiement : $DEPLOY_URL"
+
+node set-homepage.js 
