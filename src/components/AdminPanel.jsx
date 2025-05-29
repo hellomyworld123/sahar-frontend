@@ -50,11 +50,14 @@ const AdminPanel = () => {
   }, [fetchReservations]);
 
   const debouncedSearch = useCallback(
-    debounce((newParams) => {
-      setSearchParams(newParams);
-      setCurrentPage(1); // Reset to first page on new search
-    }, 300),
-    []
+    (newParams) => {
+      const debouncedFn = debounce((params) => {
+        setSearchParams(params);
+        setCurrentPage(1); // Reset to first page on new search
+      }, 300);
+      debouncedFn(newParams);
+    },
+    [setSearchParams, setCurrentPage]
   );
 
   const handleSearchChange = (field, value) => {
