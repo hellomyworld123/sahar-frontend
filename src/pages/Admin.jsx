@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import ReservationsTable from '../components/ReservationsTable';
 
 export default function Admin() {
@@ -10,10 +9,19 @@ export default function Admin() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.post(
-        `${process.env.REACT_APP_API_URL}/api/auth/login`,
-        { email: 'admin@sahar.com', password }
-      );
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/auth/login`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email: 'admin@sahar.com', password }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Échec de l\'authentification');
+      }
+
+      const data = await response.json();
       localStorage.setItem('token', data.token);
       setIsAuthenticated(true);
       setError('');

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 
 export default function ReservationsTable() {
   const [reservations, setReservations] = useState([]);
@@ -12,11 +11,17 @@ export default function ReservationsTable() {
   const fetchReservations = async () => {
     try {
       const token = localStorage.getItem('token');
-      const res = await axios.get(
+      const response = await fetch(
         `${process.env.REACT_APP_API_URL}/api/reservations`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
-      setReservations(res.data.data);
+
+      if (!response.ok) {
+        throw new Error('Erreur lors de la récupération des réservations');
+      }
+
+      const data = await response.json();
+      setReservations(data.data);
     } catch (err) {
       setError(err.message);
     }
@@ -27,10 +32,18 @@ export default function ReservationsTable() {
 
     try {
       const token = localStorage.getItem('token');
-      await axios.delete(
+      const response = await fetch(
         `${process.env.REACT_APP_API_URL}/api/reservations/${id}`,
-        { headers: { Authorization: `Bearer ${token}` } }
+        {
+          method: 'DELETE',
+          headers: { Authorization: `Bearer ${token}` }
+        }
       );
+
+      if (!response.ok) {
+        throw new Error('Erreur lors de la suppression');
+      }
+
       setReservations(reservations.filter(r => r._id !== id));
     } catch (err) {
       setError(err.message);
