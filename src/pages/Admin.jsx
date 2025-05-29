@@ -14,7 +14,10 @@ export default function Admin() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email: 'admin@sahar.com', password }),
+        body: JSON.stringify({ 
+          email: 'admin@sahar.com', 
+          password: password 
+        }),
       });
 
       if (!response.ok) {
@@ -26,13 +29,14 @@ export default function Admin() {
       setIsAuthenticated(true);
       setError('');
     } catch (err) {
-      setError('Échec de l\'authentification');
+      setError('Mot de passe incorrect');
+      console.error('Erreur de login:', err);
     }
   };
 
   if (!isAuthenticated) {
     return (
-      <div className="container mx-auto p-4">
+      <div className="container mx-auto p-4 text-gold">
         <h1 className="text-3xl font-bold mb-4">Administration</h1>
         <form onSubmit={handleLogin} className="max-w-md">
           <div className="mb-4">
@@ -42,12 +46,12 @@ export default function Admin() {
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full p-2 border rounded"
+              className="w-full p-2 border rounded bg-noir text-gold border-gold"
               required
             />
           </div>
           {error && <p className="text-red-500 mb-4">{error}</p>}
-          <button type="submit" className="bg-gold text-noir px-4 py-2 rounded">
+          <button type="submit" className="bg-gold text-noir px-4 py-2 rounded hover:bg-rose transition-colors">
             Se connecter
           </button>
         </form>
