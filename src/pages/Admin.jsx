@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import ReservationsTable from '../components/ReservationsTable';
 
 export default function Admin() {
@@ -6,13 +7,18 @@ export default function Admin() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    if (password === process.env.REACT_APP_ADMIN_PASS) {
+    try {
+      const { data } = await axios.post(
+        `${process.env.REACT_APP_API_URL}/api/auth/login`,
+        { email: 'admin@sahar.com', password }
+      );
+      localStorage.setItem('token', data.token);
       setIsAuthenticated(true);
       setError('');
-    } else {
-      setError('Mot de passe incorrect');
+    } catch (err) {
+      setError('Échec de l\'authentification');
     }
   };
 

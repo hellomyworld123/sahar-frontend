@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 export default function ReservationsTable() {
   const [reservations, setReservations] = useState([]);
@@ -10,10 +11,12 @@ export default function ReservationsTable() {
 
   const fetchReservations = async () => {
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/reservations`);
-      if (!response.ok) throw new Error('Erreur lors de la récupération des réservations');
-      const data = await response.json();
-      setReservations(data);
+      const token = localStorage.getItem('token');
+      const res = await axios.get(
+        `${process.env.REACT_APP_API_URL}/api/reservations`,
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      setReservations(res.data.data);
     } catch (err) {
       setError(err.message);
     }
@@ -23,11 +26,12 @@ export default function ReservationsTable() {
     if (!window.confirm('Êtes-vous sûr de vouloir supprimer cette réservation ?')) return;
 
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/reservations/${id}`, {
-        method: 'DELETE',
-      });
-      if (!response.ok) throw new Error('Erreur lors de la suppression');
-      setReservations(reservations.filter(r => r.id !== id));
+      const token = localStorage.getItem('token');
+      await axios.delete(
+        `${process.env.REACT_APP_API_URL}/api/reservations/${id}`,
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      setReservations(reservations.filter(r => r._id !== id));
     } catch (err) {
       setError(err.message);
     }
@@ -55,7 +59,7 @@ export default function ReservationsTable() {
           </thead>
           <tbody>
             {reservations.map((reservation) => (
-              <tr key={reservation.id} className="border-t">
+              <tr key={reservation._id} className="border-t">
                 <td className="px-4 py-2">{reservation.service}</td>
                 <td className="px-4 py-2">{new Date(reservation.date).toLocaleDateString()}</td>
                 <td className="px-4 py-2">{reservation.time}</td>
@@ -64,7 +68,7 @@ export default function ReservationsTable() {
                 <td className="px-4 py-2">{reservation.email}</td>
                 <td className="px-4 py-2">
                   <button
-                    onClick={() => handleDelete(reservation.id)}
+                    onClick={() => handleDelete(reservation._id)}
                     className="text-red-500 hover:text-red-700"
                   >
                     🗑️
