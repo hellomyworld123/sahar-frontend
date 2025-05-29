@@ -4,7 +4,13 @@ import AdminPanel from './components/AdminPanel';
 import Login from './components/Login';
 import ProtectedRoute from './components/ProtectedRoute';
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 function App() {
+  if (!API_URL) {
+    return <div className="p-4 text-center text-red-600">Error: missing REACT_APP_API_URL environment variable.</div>;
+  }
+
   return (
     <Router>
       <Routes>
