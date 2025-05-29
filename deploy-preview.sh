@@ -41,4 +41,6 @@ echo "🔗 Récupération de l'URL de prévisualisation..."
 PREVIEW_URL=$(vercel ls --token=$VERCEL_TOKEN | grep admin-preview | awk '{print $2}')
 
 echo "✅ Déploiement terminé avec succès!"
-echo "🌐 URL de prévisualisation: $PREVIEW_URL" 
+echo "🌐 URL de prévisualisation: $PREVIEW_URL"
+
+git add . 
